@@ -7,6 +7,66 @@
     <link rel="stylesheet" href="theme.css" />
   </head>
   <body>
+    <div class="container" id="app">
+      <!-- <div class="card center">
+        <h1>Counter: {{ counter }} </h1>
+        <div class="">
+          <button class="btn primary" @click="counter ++">+</button>
+          <button class="btn denger" @click="counter --">-</button>
+        </div>
+      </div> -->
+      <div class="card ">
+        <h1>List of notes </h1>
+        <div class="form-control">
+          <input type="text" name="" id="" 
+          v-bind:placeholder="placeholder" 
+          v-bind:value="inputValue" 
+          v-model="inputValue"
+          @keypress="keypressInput"
+          @keypress.i="addNote"
+          @input="inputChage"
+          />
+        </div>
+        <h2> Text: {{ inputValue }}</h2>
+          <button class="btn" @click="addNote">Add</button>
+          <hr>
+        <ul class="list">
+          <li v-for="(a, idx ) in arr" :key="idx" class="item-list">
+            <!-- :class-1 -->
+            <span :class="arr.length > 5 ? 'primary' : 'bold' ">
+            {{ toLowerCaseMy(a) }}</span>
+            <!-- :class-1 -->
+            <!-- :class-2 -->
+            <span :class="{
+            'primary': true, 
+            'bold': arr.length > 5 
+            }">
+              {{ toLowerCaseMy(a) }}</span>
+            <!-- :class-2 -->
+            <!-- :class-3 -->
+            <span :class="['bold', {'primary': arr.length > 5}]">
+                {{ toLowerCaseMy(a) }}</span>
+            <!-- :class-3 --> 
+            <button class="btn danger" @click="removeNote(idx, $event)">DELETE</button>
+          </li>
+          <hr>
+          <li>
+            <!--  {{ 1. сюда можно вызывать  только те методы,
+               результат которых может быть приведён к строке  }} {{arr.length}}  
+              2. Метод должен быть вызван 
+                  doubleCount()
+              3. computed свойство мы не вызываем !() они геттеры и сетеры 
+              -->
+            <strong>Generel quantity of notes</strong>{{arr.length}} | Duble notes: {{ doubleCountComp }}
+            <hr>
+            <strong>Generel quantity of notes</strong>{{arr.length}} | Duble notes: {{ doubleCount() }}
+          </li>
+        </ul>
 
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
   </body>
 </html>
